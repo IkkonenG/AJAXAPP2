@@ -32,10 +32,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit" enctype="multipart/form-data">
-
-            <input type="hidden" asp-for="Id" />
-
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
@@ -52,21 +49,46 @@
                 <input asp-for="EmailId" class="form-control" />
                 <span asp-validation-for="EmailId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="CountryId" class="control-label"></label>
-                <select asp-for="CountryId" class="form-control" asp-items="ViewBag.Countries" onchange="FillCities(this,'lstCity');"></select>
+
+
+            <div class="form-group btn-group col-12">
+                <div class="col-11">
+                    <label asp-for="CountryId" class="control-label"></label>
+                    <select id="lstCountryId" asp-for="CountryId" class="form-control" asp-items="ViewBag.Countries"
+                            onchange="FillCities(this,'lstCity');"></select>
+                </div>
+
+
+                <div class="col-1 mt-4">
+                    <button class="btn btn-success" onclick="ShowCountryCreateModal();">
+                        +
+                    </button>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="CityId" class="control-label"></label>
-                <select id="lstCity" asp-for="CityId" class ="form-control" asp-items="ViewBag.Cities"></select>
+
+
+            <div class="form-group btn-group col-12">
+                <div class="col-11">
+                    <label asp-for="CityId" class="control-label"></label>
+                    <select id="lstCity" asp-for="CityId" class="form-control" asp-items="ViewBag.Cities"></select>
+                </div>
+
+                <div class="col-1 mt-4">
+                    <button class="btn btn-success" onclick="ShowCityCreateModal();">
+                        +
+                    </button>
+                </div>
             </div>
+
+
+
 
             <div class="col-md-12 btn-group pb-2">
 
                 <div class="form-group col-4 p-0">
 
                     <label asp-for="ProfilePhoto" class="control-label"></label>
-                    <img id="PreviewPhoto" src="~/images/@Model.PhotoUrl" alt="Logo Image"
+                    <img id="PreviewPhoto" src="~/images/noimage.png" alt="Logo Image"
                          width="125" height="125" />
                     <span asp-validation-for="PhotoUrl" class="text-danger"></span>
 
@@ -85,12 +107,12 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Edit" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
 
             <div class="form-group pt-0 mt-0">
                 <div ID="HiddenDiv" style="visibility: hidden;">
-                    <input asp-for="PhotoUrl" id="PhotoUrl" />
+                    <input asp-for="PhotoUrl" id="PhotoUrl" value="" />
                 </div>
             </div>
 
@@ -125,17 +147,27 @@
             var countryId = $(countrySelect).val();
             var citySelect = $('#' + citySelectId);
 
-            citySelect.empty();
+            citySelect.empty(); 
 
             if (countryId) {
                 $.getJSON('/City/GetByCountry', { countryId: countryId }, function (data) {
-                    citySelect.append($('<option>', { value: '', text: '-- Select City --' }));
+                    citySelect.append($('<option>', {
+                        value: '',
+                        text: '-- Select City --'
+                    }));
+
                     $.each(data, function (index, city) {
-                        citySelect.append($('<option>', { value: city.id, text: city.name }));
+                        citySelect.append($('<option>', {
+                            value: city.id,
+                            text: city.name
+                        }));
                     });
                 });
             } else {
-                citySelect.append($('<option>', { value: '', text: '-- Select City --' }));
+                citySelect.append($('<option>', {
+                    value: '',
+                    text: '-- Select City --'
+                }));
             }
         }
     </script>

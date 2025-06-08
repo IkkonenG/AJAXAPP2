@@ -11,12 +11,12 @@ namespace AJAXAPP.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK Cities Countries _CountryId",
+                name: "FK_Cities_Countries_CountryId",
 table: "CITIES");
 
            
             migrationBuilder.AddForeignKey(
-           name: "FK_Cities Countries CountryId",
+           name: "FK_Cities_Countries_CountryId",
             table: "CITIES",
             column: "CountryId",
             principalTable: "Countries",
@@ -34,7 +34,7 @@ table: "CITIES");
             table: "CITIES");
 
 migrationBuilder.AddForeignKey(
-name: "FK_Cities _Countries_CountryId",
+name: "FK_Citties_Countries_CountryId",
 table: "CITIES",
 column: "CountryId",
 principalTable: "Countries",

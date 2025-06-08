@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AJAXAPP.Controllers
+namespace AdvancedAjax.Controllers
 {
     public class CustomerController : Controller
     {

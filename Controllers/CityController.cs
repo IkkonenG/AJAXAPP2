@@ -1,7 +1,7 @@
-﻿﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AJAXAPP.Controllers
+namespace AdvancedAjax.Controllers
 {
     public class CityController : Controller
     {
@@ -140,7 +140,7 @@ namespace AJAXAPP.Controllers
         {
             City city = new City();
             city.CountryId = countryId;
-            city.CountryName = GetCountryName(countryId); 
+            city.CountryName = GetCountryName(countryId);
             return PartialView("_CreateModalForm", city);
         }
 

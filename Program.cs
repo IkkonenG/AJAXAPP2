@@ -2,10 +2,10 @@ global using System.ComponentModel.DataAnnotations;
 global using System.ComponentModel.DataAnnotations.Schema;
 global using System.ComponentModel;
 global using Microsoft.EntityFrameworkCore;
-global using AdvancedAjax.Models;
+global using AJAXAPP.Models;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Mvc.Rendering;
-global using AdvancedAjax.Data;
+global using AJAXAPP.DATA;
 
 internal class Program
 {

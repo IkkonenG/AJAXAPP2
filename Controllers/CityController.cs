@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace AdvancedAjax.Controllers
+namespace AJAXAPP.Controllers
 {
     public class CityController : Controller
     {
@@ -152,6 +152,16 @@ namespace AdvancedAjax.Controllers
             return NoContent();
         }
 
+        [HttpGet]
+        public JsonResult GetByCountry(int countryId)
+        {
+            var cities = _context.Cities
+                .Where(c => c.CountryId == countryId)
+                .Select(c => new { id = c.Id, name = c.Name })
+                .ToList();
+
+            return Json(cities);
+        }
         private string GetCountryName(int countryId)
         {
             if (countryId == 0)

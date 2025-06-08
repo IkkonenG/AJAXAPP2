@@ -5,16 +5,22 @@ global using Microsoft.EntityFrameworkCore;
 global using AJAXAPP.Models;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.AspNetCore.Mvc.Rendering;
-global using AJAXAPP.DATA;
+global using AJAXAPP.Data;
 
-internal class Program
+public class Program
 {
+    public Program()
+    {
+    }
+
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
+        builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
         var app = builder.Build();
 
